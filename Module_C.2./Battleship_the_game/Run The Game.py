@@ -1,4 +1,8 @@
-from internal_logic.Class_Board import Board
+from External_logic import*
+
+g = Game()
+g.start()
+
 
 
 
