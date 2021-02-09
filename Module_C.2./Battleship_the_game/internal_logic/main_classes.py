@@ -1,10 +1,11 @@
+from internal_logic.main_check import*
 
 class Board:
     def __init__(self, hid=False, size=6):
         self.size = size
         self.hid = hid
         self.count = 0
-        self.field = [["O"] * size for _ in range(size)]
+        self.field = [["~"] * size for _ in range(size)]
         self.busy = []
         self.ships = []
 
@@ -12,7 +13,7 @@ class Board:
         for d in ship.dots:
             if self.out(d) or d in self.busy:
                 raise BoardWrongShipException()
-        for d in siip.dots:
+        for d in ship.dots:
             self.field[d.x][d.y] = "■"
             self.busy.append(d)
 
@@ -29,7 +30,7 @@ class Board:
             for dx, dy in near:
                 cur = Dot(d.x + dx, d.y + dy)
                 if not (self.out(cur)) and cur not in self.busy:
-                    if verd:
+                    if verb:
                         self.field[cur.x][cur.y] = "."
                     self.busy.append(cur)
 
@@ -39,7 +40,7 @@ class Board:
         for i, row in enumerate(self.field):
             res += f"\n{i + 1} | " + " | ".join(row) + " |"
         if self.hid:
-            res = res.replace("■", "O")
+            res = res.replace("■", "~")
         return res
 
     def out(self, d):
