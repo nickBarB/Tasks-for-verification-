@@ -15,6 +15,14 @@ class Board:
         for d in siip.dots:
             self.field[d.x][d.y] = "■"
 
+    def contour(self):
+
+    def out(self):
+
+    def shot(self):
+
+
+
 
 B = Board()
 
